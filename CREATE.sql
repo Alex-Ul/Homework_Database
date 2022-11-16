@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS Music_genre (
 	id SERIAL PRIMARY KEY,
-	genre VARCHAR NOT NULL
+	genre VARCHAR UNIQUE NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Singer (
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS GenreSinger (
 CREATE TABLE IF NOT EXISTS Album (
 	id SERIAL PRIMARY KEY,
 	name_album VARCHAR NOT NULL,
-	year_album INTEGER
+	year_album INTEGER CHECK (year_album > 1900)
 );
 
 CREATE TABLE IF NOT EXISTS SingerAlbum (
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS Tracks (
 CREATE TABLE IF NOT EXISTS Music_Collection (
 	id SERIAL PRIMARY KEY,
 	name_collection VARCHAR NOT NULL,
-	year_collection INTEGER
+	year_collection INTEGER CHECK (year_album > 1900)
 );
 
 CREATE TABLE IF NOT EXISTS CollectionTracks (
@@ -44,3 +44,5 @@ CREATE TABLE IF NOT EXISTS CollectionTracks (
 	track_id INTEGER REFERENCES Tracks(id),
 	CONSTRAINT ct PRIMARY KEY (music_collection_id, track_id) 
 );
+
+ALTER TABLE Tracks ALTER COLUMN duration TYPE INTERVAL;
