@@ -143,3 +143,5 @@ INSERT INTO collectiontracks (music_collection_id, track_id)
 	 		(6, 131),
 	 		(7, 139),
 	 		(8, 146);
+
+UPDATE tracks SET name_track = 'Every Second of My Life Intro' WHERE duration = '00:00:40';
